@@ -17,3 +17,9 @@ export async function PUT(request) {
   const category = await Category.findByIdAndUpdate(body._id, body) 
   return Response.json(category)
 }
+
+export async function DELETE(request) {
+  const { id } = await request.json();
+  await Category.findByIdAndDelete(id);
+  return new Response(JSON.stringify({ success: true }), { status: 200 });
+}
